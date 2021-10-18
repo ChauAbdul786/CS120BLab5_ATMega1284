@@ -1,7 +1,7 @@
 /*  Author: Abdullah Chaudhry   
  *  Partner(s) Name: 
  *  Lab Section: 021
- *  Assignment: Lab #5  Exercise #1
+ *  Assignment: Lab #5  Exercise #2
  *  Exercise Description: [optional - include for your own benefit]
  *
  *  I acknowledge all content contained herein, excluding template or example
@@ -14,7 +14,7 @@
 
 enum States {Start, wait, waitRelease, inc, dec, reset} State; 
 unsigned char tmpA;
-unsigned char tmpB;
+unsigned char tmpC;
 
 void TickFct(){
     switch(State){
@@ -61,33 +61,33 @@ void TickFct(){
 
     switch(State){
         case Start:
-            tmpB = 0x07;
+            tmpC = 0x07;
             break;
 
         case wait:
             break;
 
         case inc:
-            if(tmpB < 8){
-                tmpB++;
+            if(tmpC < 8){
+                tmpC++;
             }
             break;
 
         case dec:
-            if(tmpB > 0){
-                tmpB--;
+            if(tmpC > 0){
+                tmpC--;
             }
             break;
 
         case reset:
-            tmpB = 0;
+            tmpC = 0;
             break;
 	
 	case waitRelease:
 	    break;
 
         default:
-            tmpB = 7;
+            tmpC = 7;
             break;
     }
 }
@@ -95,15 +95,15 @@ void TickFct(){
 int main(void) {
     /* Insert DDR and PORT initializations */
     DDRA = 0x00; PORTA = 0xFF;
-    DDRB = 0xFF; PORTB = 0x07;
+    DDRC = 0xFF; PORTC = 0x07;
 
     /* Insert your solution below */
     State = Start;
     while (1) {
         tmpA = PINA;
-        tmpB = PORTB;
+        tmpC = PORTC;
         TickFct();
-        PORTB = tmpB;
+        PORTC = tmpC;
     }
     return 1;
 }
