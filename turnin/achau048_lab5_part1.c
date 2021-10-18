@@ -61,7 +61,7 @@ int main(void) {
 					//Fuel Level was likely mistakenly set > 15 => 0011 1111
 			break;
 		}
-	PORTB = tmpC;
+	PORTC = tmpC;
 		
 	}
 	return 1;
